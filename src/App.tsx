@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import cooker from "./assets/cooker.png";
 import email from "./assets/email.png";
 import pw from "./assets/password.png";
 function App() {
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
+  const [id, setId] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const onSubmit = 1;
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(id, password);
+  };
+
+  const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // const target =
+    setId(e.target.value);
+    // console.log(id);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <div className="flex flex-col justify-center items-center gap-10 mx-auto">
@@ -14,26 +27,33 @@ function App() {
         src={cooker}
         className="flex-grow-0 flex-shrink-0 w-[147px] h-[147px] object-cover"
       />
-      <div
-        // href="https://your-homepage.com"
-        className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-center"
+      <>
+        <div
+          // href="https://your-homepage.com"
+          className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-center"
+        >
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#b90005] drop-shadow-2xl">
+            S
+          </span>
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#0a1e62] drop-shadow-2xl">
+            T
+          </span>
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#8f8f8f] drop-shadow-2xl">
+            :
+          </span>
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-gray-300 drop-shadow-md">
+            table
+          </span>
+        </div>
+      </>
+      <form
+        onSubmit={onSubmit}
+        className="flex flex-col w-full gap-7"
+        autoComplete="on"
       >
-        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#b90005] drop-shadow-2xl">
-          S
-        </span>
-        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#0a1e62] drop-shadow-2xl">
-          T
-        </span>
-        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#8f8f8f] drop-shadow-2xl">
-          :
-        </span>
-        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-gray-300 drop-shadow-md">
-          table
-        </span>
-      </div>
-
-      <form className="flex flex-col w-full gap-7" autoComplete="on">
         <input
+          onChange={handleIdChange}
+          value={id}
           type="text"
           placeholder="이메일"
           style={{
@@ -49,7 +69,9 @@ function App() {
           className="pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[76px] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60"
         />
         <input
+          onChange={handlePasswordChange}
           type="password"
+          value={password}
           placeholder="비밀번호"
           style={{
             backgroundImage: `url(${pw})`,
