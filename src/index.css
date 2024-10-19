@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .text-vh {
-  font-size: 13vh; /* 원하는 vh 값으로 조정 */
+  font-size: 12vh; /* 원하는 vh 값으로 조정 */
 }
 
 :root {

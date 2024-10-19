@@ -73,14 +73,18 @@ function Authform({ type }) {
     return "76px"; // 기본값 설정
   };
   return (
-    <div className="h-screen flex flex-col justify-center items-center gap-10 mx-auto">
+    <div
+      className={`h-screen flex flex-col justify-center items-center ${
+        type === "signin" ? "gap-10" : "gap-8"
+      }  mx-auto`}
+    >
       <img
         src={cooker}
-        className="flex-grow-0 flex-shrink-0 w-[130px] h-[130px] object-cover"
+        className="flex-grow-0 flex-shrink-0 w-[120px] object-cover"
       />
       <div
         // href="https://your-homepage.com"
-        className=" flex-grow-0 flex-shrink-0 w-[500px] text-center"
+        className=" flex-grow-0 flex-shrink-0 w-[500px] text-center leading-none"
       >
         {/* <div> */}
         <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#b90005] drop-shadow-2xl">
@@ -231,7 +235,7 @@ function Authform({ type }) {
             <button
               type="submit"
               className="
-            self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2.5 px-[135px] py-5 rounded-[20px] bg-blue-500 text-white text-xl"
+            self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2.5 px-[135px] py-4 rounded-[20px] bg-blue-500 text-white text-xl"
             >
               가입하기
             </button>
