@@ -180,7 +180,7 @@ function Authform({ type }) {
                 );
               }}
               type="button"
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 drop-shadow-md bg-blue-500 text-gray-200"
+              className="btn hover:bg-blue-600 absolute right-4 top-2 drop-shadow-md bg-blue-500 text-gray-200"
             >
               중복확인
             </button>
