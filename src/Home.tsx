@@ -51,7 +51,7 @@ function Home() {
           {/* Page content here */}
           <div className="flex flex-col flex-grow items-center justify-center gap-20 mb-16">
             <div className="flex flex-col justify-start items-center w-[413px] gap-[3px]">
-              <div className="flex items-center flex-grow-0 flex-shrink-0 relative gap-1.5">
+              <div className="flex items-center flex-grow-0 flex-shrink-0 relative gap-1.5 mt-12">
                 <p className="flex-grow-0 flex-shrink-0 text-[64px] font-bold text-center text-gray">
                   바비든든
                 </p>
