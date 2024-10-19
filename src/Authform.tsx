@@ -5,6 +5,7 @@ import pw from "./assets/password.png";
 import phone from "./assets/phone.svg";
 import spoon from "./assets/spoon.svg";
 import nameIcon from "./assets/name.svg";
+import { Link, useNavigate } from "react-router-dom";
 
 function Authform({ type }) {
   //   const [type, setType] = useState<string>();
@@ -16,6 +17,11 @@ function Authform({ type }) {
   const [name, setName] = useState<string>("");
   const [phoneNum, setPhoneNum] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const nav = useNavigate();
+  const navigate = () => {
+    nav("/register");
+  };
 
   const restaurants = {
     option1: "바비든든",
@@ -58,7 +64,7 @@ function Authform({ type }) {
   };
   const height = () => {
     if (type === "signup") {
-      return "65px";
+      return "63px";
     } else if (type === "signin") {
       return "76px";
     }
@@ -75,16 +81,16 @@ function Authform({ type }) {
           // href="https://your-homepage.com"
           className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-center"
         >
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#b90005] drop-shadow-2xl">
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#b90005] drop-shadow-2xl">
             S
           </span>
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#0a1e62] drop-shadow-2xl">
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#0a1e62] drop-shadow-2xl">
             T
           </span>
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-[#8f8f8f] drop-shadow-2xl">
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#8f8f8f] drop-shadow-2xl">
             :
           </span>
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-left text-gray-300 drop-shadow-md">
+          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-gray-300 drop-shadow-md">
             table
           </span>
         </div>
@@ -96,62 +102,65 @@ function Authform({ type }) {
         }`}
         autoComplete="off"
       >
-        <select
-          onChange={handleRestChange}
-          value={selectedRestaurant} // 키로 관리
-          id="options"
-          className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[65px] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
-          style={{
-            backgroundImage: `url(${spoon})`,
-            backgroundSize: "35px",
-            backgroundPosition: "20px center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <option value="" disabled selected>
-            식당을 선택하세요.
-          </option>
-          {Object.values(restaurants).map((restaurant) => (
-            <option key={restaurant} value={restaurant}>
-              {restaurant}
+        {type === "signup" && (
+          <select
+            onChange={handleRestChange}
+            value={selectedRestaurant} // 키로 관리
+            id="options"
+            className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[63px] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+            style={{
+              backgroundImage: `url(${spoon})`,
+              backgroundSize: "35px",
+              backgroundPosition: "20px center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <option value="" disabled selected>
+              식당을 선택하세요.
             </option>
-          ))}
-          {/* <option value="option1">바비든든</option>
-          <option value="option2">경성카츠</option>
-          <option value="option3">몰라몰라</option> */}
-        </select>
-        <input
-          onChange={handleNameChange}
-          value={name}
-          type="text"
-          placeholder="이름"
-          style={{
-            backgroundImage: `url(${nameIcon})`,
-            backgroundSize: "35px",
-            backgroundPosition: "20px center",
-            backgroundRepeat: "no-repeat",
-          }}
-          name="name"
-          autoFocus
-          required
-          className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
-        />
-        <input
-          onChange={handlePhoneChange}
-          value={phoneNum}
-          type="tel"
-          placeholder="전화번호"
-          style={{
-            backgroundImage: `url(${phone})`,
-            backgroundSize: "35px",
-            backgroundPosition: "20px center",
-            backgroundRepeat: "no-repeat",
-          }}
-          name="phoneNum"
-          autoFocus
-          required
-          className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
-        />
+            {Object.values(restaurants).map((restaurant) => (
+              <option key={restaurant} value={restaurant}>
+                {restaurant}
+              </option>
+            ))}
+          </select>
+        )}
+        {type === "signup" && (
+          <input
+            onChange={handleNameChange}
+            value={name}
+            type="text"
+            placeholder="이름"
+            style={{
+              backgroundImage: `url(${nameIcon})`,
+              backgroundSize: "35px",
+              backgroundPosition: "20px center",
+              backgroundRepeat: "no-repeat",
+            }}
+            name="name"
+            autoFocus
+            required
+            className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+          />
+        )}
+        {type === "signup" && (
+          <input
+            onChange={handlePhoneChange}
+            value={phoneNum}
+            type="tel"
+            placeholder="전화번호"
+            style={{
+              backgroundImage: `url(${phone})`,
+              backgroundSize: "35px",
+              backgroundPosition: "20px center",
+              backgroundRepeat: "no-repeat",
+            }}
+            name="phoneNum"
+            autoFocus
+            required
+            className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+          />
+        )}
         <div className="relative ">
           <input
             onChange={handleIdChange}
@@ -169,22 +178,24 @@ function Authform({ type }) {
             required
             className={`w-full pl-16 text-xl items-center h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
           />{" "}
-          <button
-            onClick={() => {
-              console.log(
-                selectedRestaurant,
-                name,
-                phoneNum,
-                id,
-                password,
-                confirmPassword
-              );
-            }}
-            type="button"
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 drop-shadow-md bg-blue-500 text-gray-200"
-          >
-            중복확인
-          </button>
+          {type === "signup" && (
+            <button
+              onClick={() => {
+                console.log(
+                  selectedRestaurant,
+                  name,
+                  phoneNum,
+                  id,
+                  password,
+                  confirmPassword
+                );
+              }}
+              type="button"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 drop-shadow-md bg-blue-500 text-gray-200"
+            >
+              중복확인
+            </button>
+          )}
         </div>
         <input
           onChange={handlePasswordChange}
@@ -195,7 +206,7 @@ function Authform({ type }) {
           autoFocus
           required
           // className="flex-grow-0 flex-shrink-0 text-xl bg-[#e9e9e9]/60"
-          className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+          className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[76px] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
           style={{
             backgroundImage: `url(${pw})`,
             backgroundSize: "35px",
@@ -203,22 +214,24 @@ function Authform({ type }) {
             backgroundRepeat: "no-repeat",
           }}
         />
-        <input
-          onChange={handleConfirmPasswordChange}
-          type="password"
-          value={confirmPassword}
-          placeholder="비밀번호 확인"
-          name="confirmPassword"
-          autoFocus
-          required
-          className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
-          style={{
-            backgroundImage: `url(${pw})`,
-            backgroundSize: "35px",
-            backgroundPosition: "20px center",
-            backgroundRepeat: "no-repeat",
-          }}
-        />
+        {type === "signup" && (
+          <input
+            onChange={handleConfirmPasswordChange}
+            type="password"
+            value={confirmPassword}
+            placeholder="비밀번호 확인"
+            name="confirmPassword"
+            autoFocus
+            required
+            className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+            style={{
+              backgroundImage: `url(${pw})`,
+              backgroundSize: "35px",
+              backgroundPosition: "20px center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        )}
 
         <div className="flex flex-col mt-4 gap-2">
           {type === "signin" ? (
@@ -242,7 +255,7 @@ function Authform({ type }) {
           {type === "signin" && (
             <button
               type="button" // 기본 제출 동작을 하지 않도록 설정
-              // onClick={handleSignup}
+              onClick={navigate}
               className=" self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2.5 px-[135px] py-5 rounded-[20px] bg-blue-500 text-white text-xl"
             >
               회원가입

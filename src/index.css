@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-vh {
+  font-size: 13vh; /* 원하는 vh 값으로 조정 */
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
