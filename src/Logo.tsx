@@ -8,7 +8,7 @@ function Logo() {
   return (
     <p
       onClick={navigateHome}
-      className="cursor-pointer absolute left-[574px] top-2 text-[75px] text-center"
+      className="cursor-pointer leading-none text-center"
     >
       <span className="text-[75px] text-left text-[#b90005] drop-shadow-md">
         S
