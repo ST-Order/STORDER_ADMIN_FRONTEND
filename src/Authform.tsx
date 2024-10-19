@@ -21,10 +21,13 @@ function Authform({ type }) {
   const [confirmPassword, setConfirmPassword] = useState<string>("");
 
   const nav = useNavigate();
-  const navigate = () => {
+  const navigateRegister = () => {
     nav("/register");
   };
 
+  const navigateLogin = () => {
+    if (type === "signup") nav("/");
+  };
   const restaurants = {
     option1: "바비든든",
     option2: "경성카츠",
@@ -83,8 +86,10 @@ function Authform({ type }) {
         className="flex-grow-0 flex-shrink-0 w-[120px] object-cover"
       />
       <div
-        // href="https://your-homepage.com"
-        className=" flex-grow-0 flex-shrink-0 w-[500px] text-center leading-none"
+        onClick={navigateLogin}
+        className={`${
+          type === "signup" && "cursor-pointer"
+        } flex-grow-0 flex-shrink-0 w-[500px] text-center leading-none`}
       >
         {/* <div> */}
         <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#b90005] drop-shadow-2xl">
@@ -244,7 +249,7 @@ function Authform({ type }) {
           {type === "signin" && (
             <button
               type="button" // 기본 제출 동작을 하지 않도록 설정
-              onClick={navigate}
+              onClick={navigateRegister}
               className=" self-stretch flex-grow-0 flex-shrink-0 relative overflow-hidden gap-2.5 px-[135px] py-5 rounded-[20px] bg-blue-500 text-white text-xl"
             >
               회원가입
