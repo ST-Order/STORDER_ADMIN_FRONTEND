@@ -6,6 +6,8 @@ import phone from "./assets/phone.svg";
 import spoon from "./assets/spoon.svg";
 import nameIcon from "./assets/name.svg";
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "./Logo";
+import InputField from "./InputField";
 
 function Authform({ type }) {
   //   const [type, setType] = useState<string>();
@@ -71,33 +73,32 @@ function Authform({ type }) {
     return "76px"; // 기본값 설정
   };
   return (
-    <div className="flex flex-col justify-center items-center gap-10 mx-auto">
+    <div className="h-screen flex flex-col justify-center items-center gap-10 mx-auto">
       <img
         src={cooker}
         className="flex-grow-0 flex-shrink-0 w-[130px] h-[130px] object-cover"
       />
-      <>
-        <div
-          // href="https://your-homepage.com"
-          className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-9xl text-center"
-        >
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#b90005] drop-shadow-2xl">
-            S
-          </span>
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#0a1e62] drop-shadow-2xl">
-            T
-          </span>
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#8f8f8f] drop-shadow-2xl">
-            :
-          </span>
-          <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-gray-300 drop-shadow-md">
-            table
-          </span>
-        </div>
-      </>
+      <div
+        // href="https://your-homepage.com"
+        className=" flex-grow-0 flex-shrink-0 w-[500px] text-center"
+      >
+        {/* <div> */}
+        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#b90005] drop-shadow-2xl">
+          S
+        </span>
+        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#0a1e62] drop-shadow-2xl">
+          T
+        </span>
+        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-[#8f8f8f] drop-shadow-2xl">
+          :
+        </span>
+        <span className="self-stretch flex-grow-0 flex-shrink-0 w-[500px] text-vh text-left text-gray-300 drop-shadow-md">
+          table
+        </span>
+      </div>
       <form
         onSubmit={onSubmit}
-        className={`flex flex-col w-full gap-7 ${
+        className={`flex flex-col max-w-[500px] w-2/3 gap-7 ${
           type === "signup" ? "gap-4" : ""
         }`}
         autoComplete="off"
@@ -126,39 +127,23 @@ function Authform({ type }) {
           </select>
         )}
         {type === "signup" && (
-          <input
-            onChange={handleNameChange}
-            value={name}
+          <InputField
             type="text"
+            value={name}
             placeholder="이름"
-            style={{
-              backgroundImage: `url(${nameIcon})`,
-              backgroundSize: "35px",
-              backgroundPosition: "20px center",
-              backgroundRepeat: "no-repeat",
-            }}
-            name="name"
-            autoFocus
-            required
-            className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+            onChange={(e) => setName(e.target.value)}
+            icon={nameIcon}
+            height={height()}
           />
         )}
         {type === "signup" && (
-          <input
-            onChange={handlePhoneChange}
-            value={phoneNum}
+          <InputField
             type="tel"
+            value={phoneNum}
             placeholder="전화번호"
-            style={{
-              backgroundImage: `url(${phone})`,
-              backgroundSize: "35px",
-              backgroundPosition: "20px center",
-              backgroundRepeat: "no-repeat",
-            }}
-            name="phoneNum"
-            autoFocus
-            required
-            className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
+            onChange={(e) => setPhoneNum(e.target.value)}
+            icon={phone}
+            height={height()}
           />
         )}
         <div className="relative ">
