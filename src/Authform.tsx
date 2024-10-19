@@ -168,10 +168,10 @@ function Authform({ type }) {
               backgroundRepeat: "no-repeat",
             }}
             name="email"
-            autoFocus
+            autoFocus={type === "signin"}
             required
             className={`w-full pl-16 text-xl items-center h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
-          />{" "}
+          />
           {type === "signup" && (
             <button
               onClick={() => {
@@ -197,7 +197,6 @@ function Authform({ type }) {
           value={password}
           placeholder="비밀번호"
           name="password"
-          autoFocus
           required
           // className="flex-grow-0 flex-shrink-0 text-xl bg-[#e9e9e9]/60"
           className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[76px] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
@@ -215,7 +214,6 @@ function Authform({ type }) {
             value={confirmPassword}
             placeholder="비밀번호 확인"
             name="confirmPassword"
-            autoFocus
             required
             className={`pl-16 text-xl flex items-center self-stretch flex-grow-0 flex-shrink-0 h-[${height()}] relative overflow-hidden rounded-[20px] bg-[#e9e9e9]/60`}
             style={{
