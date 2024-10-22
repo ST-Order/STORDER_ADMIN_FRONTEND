@@ -12,17 +12,18 @@ function Home() {
         <div className="drawer-content flex flex-col h-screen justify-around">
           {/* Navbar */}
           <div className="navbar bg-base-300 bg-white w-full drop-shadow-sm border-b border-gray-400/50">
-            <div className="flex-none lg:hidden">
+            <div className="flex-none ml-2 lg:ml-10">
+              {/* lg:hidden */}
               <label
                 htmlFor="my-drawer-3"
                 aria-label="open sidebar"
-                className="btn btn-square btn-ghost"
+                className="btn btn-square btn-ghost "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  className="inline-block h-6 w-6 stroke-current"
+                  className="inline-block h-10 w-10 lg:h-24 lg:w-24 max-h-full max-w-full stroke-current"
                 >
                   <path
                     strokeLinecap="round"
@@ -33,18 +34,18 @@ function Home() {
                 </svg>
               </label>
             </div>
-            <div className="ml-4 mx-2 flex-1 px-2">
+            <div className="text-center mr-4 flex-1 px-2">
               <Logo />
             </div>
             <div className="hidden flex-none lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}
-                <li>
+                {/* <li>
                   <a>Navbar Item 1</a>
                 </li>
                 <li>
                   <a>Navbar Item 2</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
