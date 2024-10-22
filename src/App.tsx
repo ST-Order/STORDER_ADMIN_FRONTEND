@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./Home/Home";
 import Signup from "./Signup";
 import Signin from "./Signin";
-import Order from "./Order";
-import MenuUpdate from "./MenuUpdate";
-import MenuNotice from "./MenuNotice";
-import Notice from "./Notice";
+import Order from "./Home/Order";
+import MenuUpdate from "./Home/MenuUpdate";
+import MenuNotice from "./Home/MenuNotice";
+import Notice from "./Home/Notice";
 function App() {
   return (
     <>
