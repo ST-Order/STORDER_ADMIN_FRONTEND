@@ -4,8 +4,11 @@ import menuIcon from "./assets/menuIcon.svg";
 import noticeIcon from "./assets/noticeIcon.svg";
 import orderIcon from "./assets/orderIcon.svg";
 import soldoutIcon from "./assets/soldoutIcon.svg";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const nav = useNavigate();
+
   return (
     <>
       <div className="drawer">
@@ -66,12 +69,35 @@ function Home() {
               </p>
             </div>
             <div className="flex justify-evenly items-center w-[1264px] px-[47px] rounded-[5px] bg-white border-[3px] border-black">
-              <Menus icon={orderIcon} title="주문 처리" />
-              <Menus icon={menuIcon} title="메뉴 관리" />
-              <Menus icon={soldoutIcon} title="메뉴 품절" />
-              <Menus icon={noticeIcon} title="공지 올리기" />
+              <Menus
+                onClick={() => {
+                  nav("/order");
+                }}
+                icon={orderIcon}
+                title="주문 처리"
+              />
+              <Menus
+                onClick={() => {
+                  nav("/menu-update");
+                }}
+                icon={menuIcon}
+                title="메뉴 관리"
+              />
+              <Menus
+                onClick={() => {
+                  nav("/menu-notice");
+                }}
+                icon={soldoutIcon}
+                title="메뉴 품절"
+              />
+              <Menus
+                onClick={() => {
+                  nav("/menu-notice");
+                }}
+                icon={noticeIcon}
+                title="공지 올리기"
+              />
             </div>
-            ;
           </div>
         </div>
         <div className="drawer-side">
