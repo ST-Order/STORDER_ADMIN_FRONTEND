@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import email from "./assets/email.svg";
-import pw from "./assets/password.png";
+import email from "./assets/emailIcon.svg";
+import pw from "./assets/passwordIcon.svg";
 import Authform from "./Authform";
 import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";

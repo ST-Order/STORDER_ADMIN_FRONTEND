@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import cooker from "./assets/cooker.png";
 
 interface AuthFormProps {

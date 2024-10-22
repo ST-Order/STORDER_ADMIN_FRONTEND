@@ -3,16 +3,18 @@ import { ChangeEvent, forwardRef } from "react";
 interface InputFieldProps {
   placeholder: string;
   icon: string;
-  autoFocus?: boolean;
-  // register는 React Hook Form에서 제공하는 register 함수
   register?: any;
   type: string;
   signin?: boolean;
   minlength?: number;
+  pattern?: string;
 }
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-  ({ placeholder, icon, register, type, signin = false, minlength }, ref) => {
+  (
+    { placeholder, icon, register, type, signin = false, minlength, pattern },
+    ref
+  ) => {
     return (
       <input
         type={type}
@@ -21,7 +23,8 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
         {...register}
         required
         minLength={minlength}
-        className={`pl-16 text-xl ${
+        pattern={pattern}
+        className={`w-full pl-16 text-xl ${
           signin ? "h-[76px]" : "h-[63px]"
         } rounded-[20px] bg-[#e9e9e9]/60`}
         style={{
