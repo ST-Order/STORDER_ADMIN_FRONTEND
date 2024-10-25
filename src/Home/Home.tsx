@@ -26,7 +26,7 @@ function Home() {
               어서오세요 !
             </p>
           </div>
-          <div className="flex justify-evenly items-center w-[1264px] px-[47px] rounded-[5px] bg-white border-[3px] border-black">
+          <div className="flex justify-evenly items-center gap-10 lg:gap-40 py-10 px-[47px] lg:px-20 rounded-[5px] bg-white border-[3px] border-black">
             <Menus
               onClick={() => {
                 nav("/order");
