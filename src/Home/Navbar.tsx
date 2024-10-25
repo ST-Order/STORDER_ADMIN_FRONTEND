@@ -1,18 +1,21 @@
 import { ReactNode } from "react";
 import Logo from "../Logo";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   children: ReactNode;
 }
 
 function Navbar({ children }: Props) {
+  const nav = useNavigate();
+
   return (
     <>
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col h-screen justify-around">
           {/* Navbar */}
-          <div className="navbar bg-base-300 bg-white w-full drop-shadow-sm border-b border-gray-400/50">
+          <div className="navbar bg-base-300 bg-white w-full drop-shadow-sm border-b border-gray-400/50 min-h-24">
             <div className="flex-none ml-2 lg:ml-10">
               {/* lg:hidden */}
               <label
@@ -38,6 +41,14 @@ function Navbar({ children }: Props) {
             <div className="text-center mr-4 flex-1 px-2">
               <Logo />
             </div>
+            <div
+              onClick={() => {
+                nav("/");
+              }}
+              className="btn"
+            >
+              logout
+            </div>
             <div className="hidden flex-none lg:block">
               <ul className="menu menu-horizontal">
                 {/* Navbar menu content here */}
@@ -51,6 +62,7 @@ function Navbar({ children }: Props) {
             </div>
           </div>
           {/* Page content here */}
+
           {children}
         </div>
         <div className="drawer-side">
