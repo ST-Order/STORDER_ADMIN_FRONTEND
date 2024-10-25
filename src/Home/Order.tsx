@@ -1,4 +1,4 @@
-import { OrderItem } from "./../../OrderItem";
+import { OrderItem } from "../OrderItem";
 import React from "react";
 import Navbar from "./Navbar";
 
