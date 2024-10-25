@@ -13,7 +13,7 @@ function Navbar({ children }: Props) {
     <>
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col h-screen justify-around">
+        <div className="drawer-content flex flex-col h-screen justify-around ">
           {/* Navbar */}
           <div className="navbar bg-base-300 bg-white w-full drop-shadow-sm border-b border-gray-400/50 min-h-24">
             <div className="flex-none ml-2 lg:ml-10">
@@ -62,8 +62,7 @@ function Navbar({ children }: Props) {
             </div>
           </div>
           {/* Page content here */}
-
-          {children}
+          <div className="h-full overflow-hidden"> {children}</div>
         </div>
         <div className="drawer-side">
           <label
