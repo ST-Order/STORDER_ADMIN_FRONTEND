@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Navbar from "./Home/Navbar";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import fileUploadIcon from "./assets/fileUploadIcon.svg";
 
 function MenuRegister() {
@@ -9,18 +9,18 @@ function MenuRegister() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null); // 상태 타입 정의
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result); // 업로드된 이미지 미리보기 설정
+        setImagePreview(reader.result as string); // 업로드된 이미지 미리보기 설정
       };
       reader.readAsDataURL(file);
     }
@@ -38,8 +38,11 @@ function MenuRegister() {
         <div className="flex flex-col gap-3">
           <div className="flex items-baseline">
             <div className=" text-4xl">메뉴 이름</div>
-            {errors.title && (
-              <p className="ml-5 text-red-500">{errors.title.message}</p>
+
+            {errors.title?.message && (
+              <p className="ml-5 text-red-500">
+                {errors.title.message.toString()}
+              </p>
             )}
           </div>
           <input
@@ -52,7 +55,9 @@ function MenuRegister() {
           <div className="flex items-baseline">
             <div className=" text-4xl">메뉴 이미지 첨부</div>{" "}
             {errors.image && (
-              <p className="ml-5 text-red-500">{errors.image.message}</p>
+              <p className="ml-5 text-red-500">
+                {errors.image.message?.toString()}
+              </p>
             )}
           </div>
           <div className="flex items-center w-56 h-56 gap-2.5 p-10 rounded-[5px] bg-[#edebeb] border-[10px] border-black border-dashed">

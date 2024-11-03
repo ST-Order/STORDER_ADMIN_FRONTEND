@@ -6,11 +6,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 
 function Signin() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data); // 로그인 처리 로직

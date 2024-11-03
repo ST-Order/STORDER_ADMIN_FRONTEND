@@ -29,6 +29,7 @@ function Signup() {
       });
     } else {
       console.log(data); // 회원가입 처리 로직
+      console.log(emailMessage);
     }
   };
   const restaurants = {
@@ -39,12 +40,13 @@ function Signup() {
 
   const password = watch("password");
   // const mail = watch("email");
-  const emailValidation = (mail) => {
+
+  const emailValidation = (mail: string): string | boolean => {
     if (mail !== "1@gmail.com") {
       console.log("good");
       clearErrors("email");
       setEmailMessage("사용할 수 있습니다."); // 이메일 사용 가능 메시지 설정
-      return true;
+      return true; // 검증 통과
     } else {
       console.log("no");
       setError("email", {
@@ -52,7 +54,7 @@ function Signup() {
         message: "이미 존재하는 이메일입니다.",
       });
       setEmailMessage(""); // 중복된 이메일일 경우 메시지 초기화
-      ra;
+      return "이미 존재하는 이메일입니다."; // 에러 메시지를 반환
     }
   };
 
@@ -99,7 +101,7 @@ function Signup() {
           type="email"
           {...register("email", {
             validate: (value) => {
-              emailValidation(value);
+              return emailValidation(value);
             },
           })}
           placeholder="이메일"
@@ -114,11 +116,13 @@ function Signup() {
         />
         {errors.email && (
           <p className="text-red-500 text-center mt-2 mb-">
-            {errors.email.message}
+            {errors.email.message?.toString()}
           </p>
         )}
         <button
-          onClick={emailValidation}
+          onClick={() => {
+            emailValidation("");
+          }}
           type="button"
           className="btn hover:bg-blue-600 absolute right-4 top-2 drop-shadow-md bg-blue-500 text-gray-200"
         >
@@ -144,7 +148,7 @@ function Signup() {
         />
         {errors.confirmPassword && (
           <p className="text-red-500 text-center mt-2">
-            {errors.confirmPassword.message}
+            {errors.confirmPassword.message?.toString()}
           </p>
         )}
       </div>

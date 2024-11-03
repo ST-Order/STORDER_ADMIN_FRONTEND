@@ -1,5 +1,5 @@
 import { OrderItem } from "./OrderItem";
-export default function OrderHandling({}) {
+export default function OrderHandling() {
   return (
     <div className="w-full overflow-y-auto flex-grow">
       <OrderItem time="10:00" quantity="2" menu="삼겹덮밥 2" price="10000" />

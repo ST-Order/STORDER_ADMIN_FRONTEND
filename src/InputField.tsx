@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef } from "react";
+import { forwardRef } from "react";
 
 interface InputFieldProps {
   placeholder: string;
