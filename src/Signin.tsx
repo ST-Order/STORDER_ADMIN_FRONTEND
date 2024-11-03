@@ -34,6 +34,9 @@ function Signin() {
       />
       <div className="flex flex-col mt-4 gap-2">
         <button
+          onClick={() => {
+            nav("/home");
+          }}
           type="submit"
           className="px-[135px] py-5 rounded-[20px] bg-blue-500 text-white text-xl"
         >
