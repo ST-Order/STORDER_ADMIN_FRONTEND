@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import Navbar from "./Home/Navbar";
+import Navbar from "./Navbar";
 import { ChangeEvent, useState } from "react";
-import fileUploadIcon from "./assets/fileUploadIcon.svg";
+import fileUploadIcon from "../assets/fileUploadIcon.svg";
 
 function MenuRegister() {
   const {
@@ -53,7 +53,7 @@ function MenuRegister() {
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex items-baseline">
-            <div className=" text-4xl">메뉴 이미지 첨부</div>{" "}
+            <div className=" text-4xl">메뉴 이미지 첨부</div>
             {errors.image && (
               <p className="ml-5 text-red-500">
                 {errors.image.message?.toString()}
@@ -85,10 +85,10 @@ function MenuRegister() {
                 onChange={handleImageChange} // 파일 선택 시 호출되는 함수
               />
             </label>
-          </div>{" "}
-        </div>{" "}
+          </div>
+        </div>
         <div className="flex flex-col gap-3">
-          <div className=" text-4xl">메뉴 설명</div>{" "}
+          <div className=" text-4xl">메뉴 설명</div>
           <input
             className="px-[33px] py-7 text-center bg-[#d9d9d9] text-4xl text-[#959595]"
             {...register("description")}
@@ -138,9 +138,8 @@ function MenuRegister() {
           >
             제출
           </button>
-        </div>{" "}
+        </div>
       </form>
-      {/* </div> */}
     </Navbar>
   );
 }
