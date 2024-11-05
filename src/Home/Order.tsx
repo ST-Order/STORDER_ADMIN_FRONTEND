@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Navbar from "./Navbar";
 import OrderHandling from "./OrderHandling";
 import InCooking from "./InCooking";

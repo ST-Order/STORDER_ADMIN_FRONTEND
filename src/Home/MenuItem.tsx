@@ -1,5 +1,4 @@
-import React from "react";
-import XIcon from "./xIcon";
+import XIcon from "./XIcon";
 interface Props {
   title: string;
   image: string;

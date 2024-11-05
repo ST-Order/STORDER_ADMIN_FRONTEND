@@ -6,7 +6,7 @@ import Order from "./Home/Order";
 import MenuUpdate from "./Home/MenuUpdate";
 import MenuNotice from "./Home/MenuNotice";
 import Notice from "./Home/Notice";
-import MenuRegister from "./MenuRegister";
+import MenuRegister from "./Home/MenuRegister";
 function App() {
   return (
     <>

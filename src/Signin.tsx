@@ -6,11 +6,7 @@ import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 
 function Signin() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data); // 로그인 처리 로직
@@ -38,6 +34,9 @@ function Signin() {
       />
       <div className="flex flex-col mt-4 gap-2">
         <button
+          onClick={() => {
+            nav("/home");
+          }}
           type="submit"
           className="px-[135px] py-5 rounded-[20px] bg-blue-500 text-white text-xl"
         >
