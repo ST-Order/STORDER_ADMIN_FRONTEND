@@ -7,6 +7,8 @@ import MenuUpdate from "./Home/MenuUpdate";
 import MenuNotice from "./Home/MenuNotice";
 import Notice from "./Home/Notice";
 import MenuRegister from "./Home/MenuRegister";
+import NoticeRegister from "./Home/NoticeRegister";
+import NoticeList from "./Home/NoticeList";
 function App() {
   return (
     <>
@@ -19,6 +21,8 @@ function App() {
           <Route path="/menu-update" element={<MenuUpdate />} />
           <Route path="/menu-notice" element={<MenuNotice />} />
           <Route path="/notice" element={<Notice />} />
+          <Route path="/notice-update/register" element={<NoticeRegister />} />
+          <Route path="/notice-update/list" element={<NoticeList />} />
           <Route path="/menu-update/register" element={<MenuRegister />} />
         </Routes>
       </Router>
