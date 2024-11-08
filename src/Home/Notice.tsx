@@ -1,74 +1,110 @@
-import { NoticeItem } from "./NoticeItem";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 
-function Notice() {
-  const nav = useNavigate();
-  const [data, setData] = useState("");
-  
-  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setData(event.target.value);
-  };
+import fileUploadIcon from "../assets/fileUploadIcon.svg";
+import { useForm } from "react-hook-form";
+import Button from "./Button";
 
-  const handleRegister = () => {
-    nav("/notice-update/list", { state: { noticeData: data } }); // 정확한 경로로 수정
+function Notice() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [imagePreview, setImagePreview] = useState<string | null>(null); // 상태 타입 정의
+
+  const onSubmit = (data: any) => {
     console.log(data);
   };
-  
-  
-  
-  console.log(data);
-  
+
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string); // 업로드된 이미지 미리보기 설정
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <Navbar>
-      <div className="flex flex-col items-center gap-[40px] justify-evenly overflow-auto">
-        <div className="flex flex-col items-center self-stretch flex-grow-0 flex-shrink-0 gap-[12px]">
-          <div className="flex items-center text-[64px] font-bold text-black">
-            공지사항
-            <div id="inner text" style={{ fontWeight: "lighter" }}>을 등록해볼까요?</div>
+      <div className="flex justify-center h-full overflow-y-auto">
+        <form
+          className="flex flex-col gap-9 py-20 mx-12"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div>
+            <span className="font-bold text-6xl">공지사항</span>
+            <span className="text-5xl">을 등록해볼까요 ?</span>
           </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex">
+              <div className="text-4xl">제목</div>
 
-          <div><p>관련이미지첨부</p></div>
-          <div className="flex items-start flex-shrink-0 w-[633px] gap-11 rounded-[5px]">
-            <NoticeItem title="공지사항 관련 이미지" image="" />
-          </div>
-
-          <label htmlFor="details">상세설명</label>
-
-          <div className="w-[1023px] h-[139px] px-[33px] py-[25px] bg-[#D9D9D9] text-[40px] font-bold text-white">
-            <textarea
-              value={data}              // data 값을 textarea에 바인딩
-              onChange={onChange}        // onChange 이벤트 핸들러 설정
-              id="details"
-              placeholder="손님들에게 알려야 하는 정보를 등록해주세요 !"
-              className="w-full h-full bg-transparent border-none outline-none text-black text-sm"
+              {errors.title?.message && (
+                <p className="ml-5 text-red-500">
+                  {errors.title.message.toString()}
+                </p>
+              )}
+            </div>
+            <input
+              className="p-6 text-center bg-[#d9d9d9] text-3xl text-[#959595]"
+              {...register("title", {
+                required: "메뉴 이름을 작성해주세요..!",
+              })}
+              placeholder="메뉴 이름"
             />
           </div>
-        </div>
-
-        <div className="flex justify-center space-x-4">
-          <div
-            onClick={() => {
-              handleRegister
-              nav("/notice-update/list");
-              console.log("제출", data);
-            }}
-            className="flex cursor-pointer justify-center items-center w-[515px] h-[100px] px-[62px] py-[26px] rounded-[15px] bg-[#435fff] text-[40px] font-bold text-white"
-          >
-            공지사항 등록하기
+          <div className="flex flex-col gap-3">
+            <div className="flex items-baseline">
+              <div className=" text-4xl">이미지 첨부</div>
+              {errors.image && (
+                <p className="ml-5 text-red-500">
+                  {errors.image.message?.toString()}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center w-48 h-48 gap-2.5 p-10 rounded-[5px] bg-[#edebeb] border-[10px] border-black border-dashed">
+              <label
+                htmlFor="image"
+                className="flex flex-col cursor-pointer h-full w-full"
+              >
+                {imagePreview ? (
+                  <img src={imagePreview} alt="업로드된 이미지 미리보기" />
+                ) : (
+                  <img
+                    src={fileUploadIcon}
+                    alt="파일 업로드 아이콘"
+                    className="p-4"
+                  />
+                )}
+                <input
+                  className="bg-[#d9d9d9] border border-black hidden"
+                  {...register("image", {
+                    required: "대표 이미지를 첨부하세요..!",
+                  })}
+                  type="file"
+                  id="image"
+                  accept="image/*"
+                  onChange={handleImageChange} // 파일 선택 시 호출되는 함수
+                />
+              </label>
+            </div>
           </div>
-
-          <div
-            onClick={() => {
-              window.history.back(); // 이전 페이지로 돌아가기
-              console.log("취소", data);
-            }}
-            className="flex cursor-pointer justify-center items-center w-[515px] h-[100px] px-[62px] py-[26px] rounded-[15px] bg-[#B90005] text-[40px] font-bold text-white"
-          >
-            취소
+          <div className="flex flex-col gap-3">
+            <div className=" text-4xl">메뉴 설명</div>
+            <input
+              className="p-6 text-center bg-[#d9d9d9] text-3xl text-[#959595]"
+              {...register("description")}
+              placeholder="메뉴에 대한 간단한 설명이나 재료, 맛 등을 알려주세요 !"
+            />
           </div>
-        </div>
+          <div className="flex justify-evenly">
+            <Button link="" text="제출하기" color="#B90005" />
+            <Button link="" text="취소" />
+          </div>
+        </form>
       </div>
     </Navbar>
   );
