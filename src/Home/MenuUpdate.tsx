@@ -1,9 +1,8 @@
+import Button from "./Button";
 import { MenuItem } from "./MenuItem";
 import Navbar from "./Navbar";
-import { useNavigate } from "react-router-dom";
 
 function MenuUpdate() {
-  const nav = useNavigate();
   return (
     <Navbar>
       <div className="flex flex-col items-center gap-[70px] h-full justify-evenly">
@@ -15,14 +14,7 @@ function MenuUpdate() {
             <MenuItem title="삼겹덮밥" image="" />
           </div>
         </div>
-        <div
-          onClick={() => {
-            nav("/menu-update/register");
-          }}
-          className="flex cursor-pointer justify-center items-center w-[515px] h-[100px] px-[62px] py-[26px] rounded-[15px] bg-[#435fff] text-[40px] font-bold text-white"
-        >
-          메뉴 등록하기
-        </div>
+        <Button link={"/menu-update/register"} text="메뉴 등록하기" />
       </div>
     </Navbar>
   );
