@@ -100,8 +100,8 @@ function Notice() {
               placeholder="메뉴에 대한 간단한 설명이나 재료, 맛 등을 알려주세요 !"
             />
           </div>
-          <div className="flex justify-evenly">
-            <Button link="" text="제출하기" color="#B90005" />
+          <div className="flex justify-evenly gap-5">
+            <Button link="" text="제출하기" color="#b90005" />
             <Button link="" text="취소" />
           </div>
         </form>

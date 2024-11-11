@@ -13,7 +13,7 @@ export default function Button({ link, text, color }: ButtonProps) {
       onClick={() => {
         nav(link);
       }}
-      className={`flex cursor-pointer justify-center items-center w-[515px] h-[100px] px-[62px] py-[26px] rounded-[15px] bg-[${
+      className={`flex cursor-pointer justify-center items-center w-[500px] h-[100px] px-[62px] py-[26px] rounded-[15px] bg-[${
         color || "#435fff"
       }] text-[40px] font-bold text-white`}
     >
