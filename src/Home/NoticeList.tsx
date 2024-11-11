@@ -15,6 +15,7 @@ function NoticeList() {
         <p className="text-[64px] font-bold text-center">공지사항</p>
 
         {/* 스크롤이 가능한 리스트 영역 */}
+
         <div className="flex flex-col items-start  border border-gray-300 rounded-md p-4">
           {noticeEx.data.map((notice, index) => (
             <div
