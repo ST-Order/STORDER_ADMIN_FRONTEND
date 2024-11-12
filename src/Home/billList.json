@@ -1,0 +1,26 @@
+{
+  "code": "",
+  "message": "주문 상세 내역 조회 성공",
+  "data": {
+    "order_id": 1,
+    "store_name": "바비든든",
+    "order_date": "2024-10-10T18:03:11",
+    "order_items": [
+      {
+        "menu_name": "삼겹덮밥",
+        "quantity": 1,
+        "price": 3500
+      },
+      {
+        "menu_name": "스팸마요",
+        "quantity": 1,
+        "price": 6500
+      }
+    ],
+    "subtotal": 10000,
+    "coupon_discount": 0,
+    "payment_method": "카카오페이 결제",
+    "total_price": 10000,
+    "stamp_points": 2
+  }
+}

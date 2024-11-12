@@ -47,6 +47,11 @@ function NoticeList() {
           ))}
         </div>
       </div>
+      <NoticeModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        content={selectedNotice}
+      />
     </Navbar>
   );
 }
