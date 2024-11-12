@@ -15,6 +15,46 @@
       "storeName": "포포420",
       "title": "신메뉴 출시 안내",
       "createdAt": "2024-11-07T15:00:00"
+    },
+
+    {
+      "id": 3,
+      "storeId": 102,
+      "storeName": "포포420",
+      "title": "재료 품절 안내",
+      "createdAt": "2024-11-07T15:00:00"
+    },
+
+    {
+      "id": 4,
+      "storeId": 102,
+      "storeName": "포포420",
+      "title": "신메뉴 출시 안내",
+      "createdAt": "2024-11-07T15:00:00"
+    },
+
+    {
+      "id": 5,
+      "storeId": 102,
+      "storeName": "포포420",
+      "title": "신메뉴 출시 안내",
+      "createdAt": "2024-11-07T15:00:00"
+    },
+
+    {
+      "id": 6,
+      "storeId": 102,
+      "storeName": "포포420",
+      "title": "신메뉴 출시 안내",
+      "createdAt": "2024-11-07T15:00:00"
+    },
+
+    {
+      "id": 7,
+      "storeId": 102,
+      "storeName": "포포420",
+      "title": "영업 종료 안내",
+      "createdAt": "2024-11-07T15:00:00"
     }
   ]
 }

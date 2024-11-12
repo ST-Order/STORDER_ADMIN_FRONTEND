@@ -1,0 +1,50 @@
+{
+  "code": "",
+  "message": "",
+  "data": {
+    "storeId": 1,
+    "storeName": "바비든든",
+    "menus": [
+      {
+        "id": 1,
+        "name": "삼겹덮밥",
+        "price": 3500,
+        "description": "맛난 삼겹살과 쌈장으로 만든 덮밥",
+        "imageUrl": "https://example.com/images/menu1.jpg",
+        "isBest": false,
+        "isPopular": true,
+        "isAvailable": true
+      },
+      {
+        "id": 2,
+        "name": "제육덮밥",
+        "price": 3500,
+        "description": "맛있는 제육으로 만든 덮밥",
+        "imageUrl": "https://example.com/images/menu2.jpg",
+        "isBest": true,
+        "isPopular": false,
+        "isAvailable": false
+      },
+      {
+        "id": 3,
+        "name": "참치덮밥",
+        "price": 3500,
+        "description": "맛있는 참치로 만든 덮밥",
+        "imageUrl": "https://example.com/images/menu3.jpg",
+        "isBest": true,
+        "isPopular": false,
+        "isAvailable": false
+      },
+      {
+        "id": 4,
+        "name": "스팸덮밥",
+        "price": 3500,
+        "description": "맛있는 스팸으로 만든 덮밥",
+        "imageUrl": "https://example.com/images/menu4.jpg",
+        "isBest": true,
+        "isPopular": false,
+        "isAvailable": false
+      }
+    ]
+  }
+}
