@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import email from "./assets/emailIcon.svg";
 import pw from "./assets/passwordIcon.svg";
 import phone from "./assets/phoneIcon.svg";
@@ -6,7 +7,6 @@ import nameIcon from "./assets/name.svg";
 import spoon from "./assets/spoonIcon.svg";
 import Authform from "./Authform";
 import InputField from "./InputField";
-import { useState } from "react";
 
 function Signup() {
   const {
@@ -18,20 +18,39 @@ function Signup() {
     formState: { errors },
   } = useForm();
 
-  const [emailMessage, setEmailMessage] = useState<String>(""); // 이메일 메시지 상태 추가
+  const [emailMessage, setEmailMessage] = useState<String>("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = (data: any) => {
-    // 이메일 중복 확인 로직을 여기에 추가
-    if (data.email === "1@gmail.com") {
-      setError("email", {
-        type: "existingEmail",
-        message: "이미 존재하는 이메일입니다.",
+  const onSubmit = async (data: any) => {
+    try {
+      setIsLoading(true);
+      const signupData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role: "ADMIN",
+      };
+
+      // 서버 연동 시 실제 endpoint로 변경 필요
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(signupData),
       });
-    } else {
-      console.log(data); // 회원가입 처리 로직
-      console.log(emailMessage);
+
+      if (!response.ok) {
+        throw new Error("회원가입 실패");
+      }
+
+      // 성공 시 로그인 페이지로 이동
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Signup failed:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
+
   const restaurants = {
     option1: "바비든든",
     option2: "경성카츠",
@@ -39,22 +58,31 @@ function Signup() {
   };
 
   const password = watch("password");
-  // const mail = watch("email");
 
-  const emailValidation = (mail: string): string | boolean => {
-    if (mail !== "1@gmail.com") {
-      console.log("good");
-      clearErrors("email");
-      setEmailMessage("사용할 수 있습니다."); // 이메일 사용 가능 메시지 설정
-      return true; // 검증 통과
-    } else {
-      console.log("no");
-      setError("email", {
-        type: "existingEmail",
-        message: "이미 존재하는 이메일입니다.",
+  const emailValidation = async (mail: string) => {
+    try {
+      // 서버 연동 시 실제 endpoint로 변경 필요
+      const response = await fetch("/api/check-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: mail }),
       });
-      setEmailMessage(""); // 중복된 이메일일 경우 메시지 초기화
-      return "이미 존재하는 이메일입니다."; // 에러 메시지를 반환
+
+      if (!response.ok) {
+        setError("email", {
+          type: "existingEmail",
+          message: "이미 존재하는 이메일입니다.",
+        });
+        setEmailMessage("");
+        return false;
+      }
+
+      clearErrors("email");
+      setEmailMessage("사용할 수 있는 이메일입니다.");
+      return true;
+    } catch (error) {
+      console.error("Email validation failed:", error);
+      return false;
     }
   };
 
@@ -96,14 +124,10 @@ function Signup() {
         pattern="(010)-\d{3,4}-\d{4}"
       />
 
-      <div className="relative ">
+      <div className="relative">
         <input
           type="email"
-          {...register("email", {
-            validate: (value) => {
-              return emailValidation(value);
-            },
-          })}
+          {...register("email")}
           placeholder="이메일"
           style={{
             backgroundImage: `url(${email})`,
@@ -115,14 +139,15 @@ function Signup() {
           required
         />
         {errors.email && (
-          <p className="text-red-500 text-center mt-2 mb-">
+          <p className="text-red-500 text-center mt-2">
             {errors.email.message?.toString()}
           </p>
         )}
+        {emailMessage && (
+          <p className="text-green-500 text-center mt-2">{emailMessage}</p>
+        )}
         <button
-          onClick={() => {
-            emailValidation("");
-          }}
+          onClick={() => emailValidation(watch("email"))}
           type="button"
           className="btn hover:bg-blue-600 absolute right-4 top-2 drop-shadow-md bg-blue-500 text-gray-200"
         >
@@ -136,27 +161,28 @@ function Signup() {
         register={register("password")}
         type="password"
       />
-      <div>
-        <InputField
-          placeholder="비밀번호 확인"
-          icon={pw}
-          register={register("confirmPassword", {
-            validate: (value) =>
-              value === password || "비밀번호가 일치하지 않습니다.", // 비밀번호 확인 유효성 검사
-          })}
-          type="password"
-        />
-        {errors.confirmPassword && (
-          <p className="text-red-500 text-center mt-2">
-            {errors.confirmPassword.message?.toString()}
-          </p>
-        )}
-      </div>
+
+      <InputField
+        placeholder="비밀번호 확인"
+        icon={pw}
+        register={register("confirmPassword", {
+          validate: (value) =>
+            value === password || "비밀번호가 일치하지 않습니다.",
+        })}
+        type="password"
+      />
+      {errors.confirmPassword && (
+        <p className="text-red-500 text-center mt-2">
+          {errors.confirmPassword.message?.toString()}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="px-[135px] py-4 rounded-[20px] bg-blue-500 text-white text-xl"
+        disabled={isLoading}
+        className="px-[135px] py-4 rounded-[20px] bg-blue-500 text-white text-xl disabled:bg-blue-300"
       >
-        가입하기
+        {isLoading ? "처리중..." : "가입하기"}
       </button>
     </Authform>
   );
