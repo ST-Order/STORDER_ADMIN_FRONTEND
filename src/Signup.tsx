@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import axios from "axios";
 import email from "./assets/emailIcon.svg";
 import pw from "./assets/passwordIcon.svg";
 import phone from "./assets/phoneIcon.svg";
@@ -32,18 +33,12 @@ function Signup() {
       };
 
       // 서버 연동 시 실제 endpoint로 변경 필요
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(signupData),
-      });
+      const response = await axios.post("/api/signup", signupData);
 
-      if (!response.ok) {
-        throw new Error("회원가입 실패");
+      if (response.status === 200) {
+        // 성공 시 로그인 페이지로 이동
+        window.location.href = "/login";
       }
-
-      // 성공 시 로그인 페이지로 이동
-      window.location.href = "/login";
     } catch (error) {
       console.error("Signup failed:", error);
     } finally {
@@ -62,13 +57,9 @@ function Signup() {
   const emailValidation = async (mail: string) => {
     try {
       // 서버 연동 시 실제 endpoint로 변경 필요
-      const response = await fetch("/api/check-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: mail }),
-      });
+      const response = await axios.post("/api/check-email", { email: mail });
 
-      if (!response.ok) {
+      if (response.status !== 200) {
         setError("email", {
           type: "existingEmail",
           message: "이미 존재하는 이메일입니다.",
@@ -81,6 +72,11 @@ function Signup() {
       setEmailMessage("사용할 수 있는 이메일입니다.");
       return true;
     } catch (error) {
+      setError("email", {
+        type: "existingEmail",
+        message: "이미 존재하는 이메일입니다.",
+      });
+      setEmailMessage("");
       console.error("Email validation failed:", error);
       return false;
     }
