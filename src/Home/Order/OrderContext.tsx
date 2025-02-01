@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { Order } from "./types";
+import React, { createContext, useContext, useState } from "react";
+import { Order } from "../types";
 
 interface OrderContextType {
   orders: Order[];
@@ -15,9 +15,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     {
       id: "1",
       time: "10:00",
-      quantity: "2",
       menu: "삼겹덮밥 2",
-      price: "10000",
       status: "PAID",
     },
     // ... 더 많은 초기 데이터 추가 가능
